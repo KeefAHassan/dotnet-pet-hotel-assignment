@@ -38,13 +38,14 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPost]
-        public Pet Post(Pet pet)
+        public ActionResult Post(Pet pet)
         {
             _context.Add(pet);
 
             _context.SaveChanges();
 
-            return pet;
+            // return pet;
+            return CreatedAtAction(nameof(GetById), new { id = pet.id }, pet);
         }
 
         [HttpPut("{id}")]
