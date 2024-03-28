@@ -60,14 +60,31 @@ namespace pet_hotel.Controllers
             return pet;
         }
 
+        [HttpPut("{id}/checkin")]
+        public Pet CheckIn(int id, Pet pet)
+        {
+            pet.id = id;
+
+            pet.checkedInAt = DateTime.Now;
+           
+            _context.Update(pet);
+
+            _context.SaveChanges();
+
+            return pet;
+        }
+  
+
+
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             Pet pet = _context.Pets.Find(id);
 
             _context.Pets.Remove(pet);
 
             _context.SaveChanges();
+            return NoContent();
         }
 
 
