@@ -73,6 +73,20 @@ namespace pet_hotel.Controllers
 
             return pet;
         }
+
+        [HttpPut("{id}/checkout")]
+        public Pet CheckOut(int id)
+        {
+            Pet pet = _context.Pets.SingleOrDefault(pet => pet.id == id);
+
+            pet.checkedInAt = null;
+           
+            _context.Update(pet);
+
+            _context.SaveChanges();
+
+            return pet;
+        }
   
 
 
