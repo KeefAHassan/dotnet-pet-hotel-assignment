@@ -61,9 +61,9 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPut("{id}/checkin")]
-        public Pet CheckIn(int id, Pet pet)
+        public Pet CheckIn(int id)
         {
-            pet.id = id;
+            Pet pet = _context.Pets.SingleOrDefault(pet => pet.id == id);
 
             pet.checkedInAt = DateTime.Now;
            
